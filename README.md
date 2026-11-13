@@ -1,11 +1,11 @@
-# SlickyAds — Performance Marketing Portfolio
+# Performance Marketing Portfolio
 
-A shareable, link-based alternative to the "Scaling Business.pdf" deck. Built as a single HTML file so it can be hosted on GitHub Pages (or any static host) and viewed on any device.
+A shareable, link-based performance marketing portfolio. Built as a single HTML file so it can be hosted on GitHub Pages (or any static host) and viewed on any device.
 
 ## Structure
 
 - `index.html` — self-contained slide deck (HTML, CSS, JS all in one file)
-- `assets/` — 7 slide images exported from Canva (`1.webp` … `7.webp`)
+- `assets/` — slide images (`1.webp` … `7.webp`) plus brand and share images
 
 ## Navigation
 
@@ -13,6 +13,11 @@ A shareable, link-based alternative to the "Scaling Business.pdf" deck. Built as
 - Page dots at the bottom show current slide
 - Counter shows `1 / 7`
 - Works on desktop and mobile, with light/dark theme support
+
+## Contact links
+
+- Instagram: https://instagram.com/slickyads
+- WhatsApp: https://wa.me/971543599147
 
 ## Deploying
 
@@ -27,5 +32,5 @@ This is a static site — no build step required.
 
 ## Files intentionally excluded
 
-- `Scaling Business.pdf` — the old PDF you're replacing with this site
+- `Scaling Business.pdf` — the old PDF replaced by this site
 - `upwork/` — local screenshots, not part of the public portfolio
