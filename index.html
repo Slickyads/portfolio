@@ -1,4 +1,13 @@
 <meta name="claude:viewport-fit-sides" content="cover">
+<meta property="og:title" content="SlickyAds — Performance Marketing Portfolio">
+<meta property="og:description" content="Google & Meta Ads performance marketing portfolio by SlickyAds.">
+<meta property="og:image" content="https://adscampaign.slickyads.com/assets/performance-marketing.png">
+<meta property="og:image:width" content="1920">
+<meta property="og:image:height" content="1080">
+<meta property="og:url" content="https://adscampaign.slickyads.com/">
+<meta property="og:type" content="website">
+<meta name="twitter:card" content="summary_large_image">
+<meta name="twitter:image" content="https://adscampaign.slickyads.com/assets/performance-marketing.png">
 <title>SlickyAds — Performance Marketing Portfolio</title>
 <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Space+Grotesk:wght@600;800&family=Inter:wght@400;500;600&display=swap">
 <style>
@@ -64,13 +73,14 @@
   }
   .mark {
     width: 26px; height: 26px;
-    background: var(--accent);
     border-radius: 8px;
-    mask-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 24 24'%3E%3Cpath d='M12 2L15 8H9L12 2Z'/%3E%3C/svg%3E");
-    mask-size: contain;
-    mask-repeat: no-repeat;
+    overflow: hidden;
   }
+  .mark img { width: 100%; height: 100%; display: block; object-fit: cover; }
   .brandbar .name { font-family: 'Space Grotesk', sans-serif; font-weight: 800; font-size: 1.125rem; letter-spacing: -0.02em; }
+  .mark-link { display: inline-flex; text-decoration: none; }
+  .name-link { text-decoration: none; color: inherit; }
+  .name-link:hover .name { color: var(--accent); }
   .slide {
     position: relative;
     width: 100%;
@@ -176,8 +186,10 @@
   }
 </style>
 <div class="brandbar">
-  <div class="mark" aria-hidden="true"></div>
-  <div class="name">SlickyAds</div>
+  <a class="mark-link" href="https://instagram.com/slickyads" target="_blank" rel="noopener" aria-label="SlickyAds on Instagram">
+    <div class="mark" aria-hidden="true"><img src="assets/slickyads_logo.png" alt="SlickyAds logo"></div>
+  </a>
+  <a class="name-link" href="https://instagram.com/slickyads" target="_blank" rel="noopener" aria-label="SlickyAds on Instagram"><div class="name">SlickyAds</div></a>
 </div>
 <main class="deck" id="deck">
   <section class="slide current" aria-label="Slide 1 of 7"><img src="assets/1.webp" alt="Slide 1"><div class="caption">Google & Meta Advertising</div></section>

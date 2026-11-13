@@ -17,6 +17,6 @@ Performance marketing portfolio site — single-file HTML slide deck (`index.htm
 
 ## Notes for future work
 
-- To deploy: GitHub Pages from `main` branch root folder → `https://slickyads.github.io/portfolio/`
+- To deploy: GitHub Pages from `main` branch root folder → live at `https://adscampaign.slickyads.com/`
 - To add slides: add `assets/N.webp` and add a `<section class="slide">` block in `index.html`, then update the `total` count logic if needed (currently hardcoded to 7 in HTML but the JS reads `slides.length`)
 - Do not commit the PDF or upwork screenshots

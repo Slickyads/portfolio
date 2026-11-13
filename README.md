@@ -21,7 +21,7 @@ This is a static site — no build step required.
 **GitHub Pages:**
 1. Push `main` (done)
 2. In GitHub: Settings → Pages → Build and deployment → Source: Deploy from a branch → Branch: `main`, Folder: `/(root)` → Save
-3. Live at `https://slickyads.github.io/portfolio/`
+3. Live at `https://adscampaign.slickyads.com/`
 
 **Other hosts:** Drag the whole folder (`index.html` + `assets/`) onto Netlify Drop, Vercel, Surge, etc.
 
