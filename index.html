@@ -1,0 +1,245 @@
+<meta name="claude:viewport-fit-sides" content="cover">
+<title>SlickyAds — Performance Marketing Portfolio</title>
+<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Space+Grotesk:wght@600;800&family=Inter:wght@400;500;600&display=swap">
+<style>
+  :root {
+    --bg: #ffffff;
+    --fg: #0f172a;
+    --muted: #64748b;
+    --accent: #2563eb;
+    --accent-hover: #1d4ed8;
+    --surface: #f8fafc;
+    --border: #e2e8f0;
+    --ink: #111827;
+  }
+  @media (prefers-color-scheme: dark) {
+    :root:not([data-theme="light"]) {
+      --bg: #0b1021;
+      --fg: #f8fafc;
+      --muted: #94a3b8;
+      --accent: #3b82f6;
+      --accent-hover: #60a5fa;
+      --surface: #111827;
+      --border: #1f2937;
+      --ink: #f1f5f9;
+      color-scheme: dark;
+    }
+  }
+  :root[data-theme="dark"] {
+    --bg: #0b1021;
+    --fg: #f8fafc;
+    --muted: #94a3b8;
+    --accent: #3b82f6;
+    --accent-hover: #60a5fa;
+    --surface: #111827;
+    --border: #1f2937;
+    --ink: #f1f5f9;
+    color-scheme: dark;
+  }
+  * { box-sizing: border-box; }
+  html { height: 100%; }
+  body {
+    margin: 0;
+    font-family: Inter, system-ui, -apple-system, sans-serif;
+    background: var(--bg);
+    color: var(--fg);
+    padding-left: max(16px, env(safe-area-inset-left, 0px));
+    padding-right: max(16px, env(safe-area-inset-right, 0px));
+    padding-block: max(16px, env(safe-area-inset-top, 0px)) max(40px, env(safe-area-inset-bottom, 0px));
+    font-size: 16px;
+    line-height: 1.5;
+    overflow-x: hidden;
+  }
+  .deck {
+    position: relative;
+    max-width: 1000px;
+    margin: 0 auto;
+    min-height: 70vh;
+  }
+  .brandbar {
+    display: flex;
+    align-items: center;
+    gap: 10px;
+    margin-bottom: 24px;
+  }
+  .mark {
+    width: 26px; height: 26px;
+    background: var(--accent);
+    border-radius: 8px;
+    mask-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 24 24'%3E%3Cpath d='M12 2L15 8H9L12 2Z'/%3E%3C/svg%3E");
+    mask-size: contain;
+    mask-repeat: no-repeat;
+  }
+  .brandbar .name { font-family: 'Space Grotesk', sans-serif; font-weight: 800; font-size: 1.125rem; letter-spacing: -0.02em; }
+  .slide {
+    position: relative;
+    width: 100%;
+    min-height: 560px;
+    background: var(--surface);
+    border: 1px solid var(--border);
+    border-radius: 16px;
+    overflow: hidden;
+    display: none;
+    align-items: center;
+    justify-content: center;
+  }
+  .slide.current { display: flex; }
+  .slide img {
+    max-width: 92%;
+    max-height: 82vh;
+    display: block;
+  }
+  .slide .caption {
+    position: absolute;
+    left: 20px; bottom: 20px; right: 20px;
+    font-family: 'Space Grotesk', sans-serif;
+    font-weight: 600;
+    font-size: 0.875rem;
+    letter-spacing: 0.04em;
+    color: var(--ink);
+    background: rgba(255,255,255,0.7);
+    backdrop-filter: blur(6px);
+    padding: 6px 10px;
+    border-radius: 6px;
+    border: 1px solid rgba(0,0,0,0.06);
+  }
+  @media (prefers-color-scheme: dark), [data-theme="dark"] {
+    .slide .caption { background: rgba(0,0,0,0.55); border-color: rgba(255,255,255,0.08); }
+  }
+  .pager {
+    position: fixed;
+    inset-inline: 0;
+    bottom: env(safe-area-inset-bottom, 0px);
+    padding-left: max(16px, env(safe-area-inset-left, 0px));
+    padding-right: max(16px, env(safe-area-inset-right, 0px));
+    padding-block: 14px 10px;
+    background: var(--bg);
+    border-top: 1px solid var(--border);
+    z-index: 40;
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    gap: 14px;
+  }
+  .navbtn {
+    width: 44px; height: 44px;
+    border: 1px solid var(--border);
+    background: var(--surface);
+    color: var(--fg);
+    border-radius: 12px;
+    font-size: 1.125rem;
+    cursor: pointer;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    line-height: 1;
+  }
+  .navbtn:hover { background: var(--border); }
+  .navbtn:focus-visible { outline: 2px solid var(--accent); outline-offset: 2px; }
+  .dots {
+    display: flex;
+    gap: 6px;
+    align-items: center;
+  }
+  .dot {
+    width: 10px; height: 10px;
+    border-radius: 50%;
+    border: none;
+    background: var(--border);
+    cursor: pointer;
+    padding: 0;
+  }
+  .dot.current { background: var(--accent); width: 26px; border-radius: 6px; }
+  .dot:focus-visible { outline: 2px solid var(--accent); outline-offset: 2px; }
+  .count {
+    font-family: 'Space Grotesk', sans-serif;
+    font-weight: 600;
+    font-size: 0.875rem;
+    color: var(--muted);
+    letter-spacing: 0.02em;
+  }
+  .hide { display: none !important; }
+  @media (max-width: 640px) {
+    body { padding-block: 12px 8px; }
+    .deck { min-height: 52vh; }
+    .slide { min-height: 420px; }
+    .slide img { max-width: 96%; max-height: 70vh; }
+    .brandbar .name { font-size: 1rem; }
+    .pager { padding-block: 10px 8px; gap: 10px; }
+    .navbtn { width: 40px; height: 40px; font-size: 1rem; }
+    .dot { width: 8px; height: 8px; }
+    .dot.current { width: 22px; }
+    .count { font-size: 0.75rem; }
+  }
+  @media (prefers-reduced-motion: reduce) {
+    * { transition: none !important; animation: none !important; }
+  }
+</style>
+<div class="brandbar">
+  <div class="mark" aria-hidden="true"></div>
+  <div class="name">SlickyAds</div>
+</div>
+<main class="deck" id="deck">
+  <section class="slide current" aria-label="Slide 1 of 7"><img src="assets/1.webp" alt="Slide 1"><div class="caption">Google & Meta Advertising</div></section>
+  <section class="slide" aria-label="Slide 2 of 7"><img src="assets/2.webp" alt="Slide 2"><div class="caption">Shopify Store — E-commerce</div></section>
+  <section class="slide" aria-label="Slide 3 of 7"><img src="assets/3.webp" alt="Slide 3"><div class="caption">Google Ads | E-commerce</div></section>
+  <section class="slide" aria-label="Slide 4 of 7"><img src="assets/4.webp" alt="Slide 4"><div class="caption">Facebook Ads | B2B</div></section>
+  <section class="slide" aria-label="Slide 5 of 7"><img src="assets/5.webp" alt="Slide 5"><div class="caption">Google Ads | B2B</div></section>
+  <section class="slide" aria-label="Slide 6 of 7"><img src="assets/6.webp" alt="Slide 6"><div class="caption">Meta Ads | eCommerce</div></section>
+  <section class="slide" aria-label="Slide 7 of 7"><img src="assets/7.webp" alt="Slide 7"><div class="caption">Start building your brand today</div></section>
+</main>
+<nav class="pager" aria-label="Slide navigation">
+  <button class="navbtn" id="prev" aria-label="Previous slide">&#10094;</button>
+  <div class="dots" id="dots"></div>
+  <div class="count" id="count">1 / 7</div>
+  <button class="navbtn" id="next" aria-label="Next slide">&#10095;</button>
+</nav>
+<script>
+(function(){
+  const slides = document.querySelectorAll('.slide');
+  const dotsContainer = document.getElementById('dots');
+  const countEl = document.getElementById('count');
+  const prevBtn = document.getElementById('prev');
+  const nextBtn = document.getElementById('next');
+  let index = 0;
+  const total = slides.length;
+
+  for (let i = 0; i < total; i++) {
+    const d = document.createElement('button');
+    d.className = 'dot' + (i === 0 ? ' current' : '');
+    d.setAttribute('aria-label', 'Go to slide ' + (i + 1));
+    d.setAttribute('data-index', i);
+    d.addEventListener('click', () => go(i));
+    dotsContainer.appendChild(d);
+  }
+  const dots = dotsContainer.querySelectorAll('.dot');
+
+  function go(i) {
+    if (i < 0) i = total - 1;
+    if (i >= total) i = 0;
+    index = i;
+    slides.forEach((s, k) => {
+      s.classList.toggle('current', k === i);
+      s.setAttribute('aria-hidden', k !== i ? 'true' : 'false');
+    });
+    dots.forEach((d, k) => d.classList.toggle('current', k === i));
+    countEl.textContent = (i + 1) + ' / ' + total;
+  }
+
+  prevBtn.addEventListener('click', () => go(index - 1));
+  nextBtn.addEventListener('click', () => go(index + 1));
+
+  document.addEventListener('keydown', (e) => {
+    if (e.key === 'ArrowLeft') go(index - 1);
+    if (e.key === 'ArrowRight') go(index + 1);
+  });
+
+  let startX = 0;
+  document.addEventListener('touchstart', (e) => { startX = e.changedTouches[0].clientX; }, {passive:true});
+  document.addEventListener('touchend', (e) => {
+    const endX = e.changedTouches[0].clientX;
+    if (startX - endX > 40) go(index + 1);
+    if (endX - startX > 40) go(index - 1);
+  }, {passive:true});
+})();
+</script>
